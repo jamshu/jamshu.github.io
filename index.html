@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>Know Jamshid</title>
+	<link rel="stylesheet" type="text/css" href="bower_components/angular-material
+/angular-material.min.css" />
+
+</head>
+<body ng-app="blogApp" ng-controller="ListCtrl" layout="column" layout-align="top center">
+
+<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+
+
+<script type="text/javascript" src="bower_components/angular-aria/angular-aria.min.js"></script>
+<script type="text/javascript" src="bower_components/angular-animate/angular-animate.min.js"></script>
+<script type="text/javascript" src="bower_components/hammerjs/hammer.min.js"></script>
+<script type="text/javascript" src="bower_components/angular-material/angular-material.min.js"></script>
+<script type="text/javascript" src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+<script type="text/javascript" src="app.js"></script>
+
+<md-toolbar>
+	<div class="md-toolbar-tools">
+		<span class="md-flex">Jamshid K</span>
+	</div>
+</md-toolbar>
+
+
+<md-content  layout="columns" layout-align="top left">
+
+<div class="app-content">
+
+		<h2>Technology</h2>
+		<div layout="row">
+		<md-card ng-repeat="tech in technology">
+			<div class="product">
+				<h3>{{ tech.name}}</h3>
+			</div>
+		</md-card>
+	</div>
+
+ <md-card ng-repeat="story in stories">
+ 		<h3>{{ story.title }}</h3>
+       <div ng-bind-html="story.content | unsafe"></div>
+</md-card>
+</md-content>
+
+</body>
+</html>
