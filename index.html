@@ -1,121 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Samiya | Pay Now</title>
-        <link rel="stylesheet" href="css/style.css">
-        <script src="https://dohabank.gateway.mastercard.com/checkout/version/60/checkout.js"
-            data-error="errorCallback"
-            data-cancel="cancelCallback"
-            data-beforeRedirect="Checkout.saveFormFields"
-            data-afterRedirect="Checkout.restoreFormFields"></script>
-        
-        <script type="text/javascript">
-            function errorCallback(error) {
-                console.log(JSON.stringify(error));
-            }
-            function cancelCallback() {
-                console.log('Payment cancelled');
-            }
-            function completeCallback(resultIndicator, sessionVersion) {
-                console.log('completed');
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Jamshid K - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+        body { font-family: 'Roboto', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Header Section -->
+    <header class="bg-primary-600 text-white py-6">
+        <div class="container mx-auto text-center">
+            <h1 class="text-5xl font-bold tracking-wide text-white">Jamshid K</h1>
+            <p class="text-2xl mt-2 text-gray-200">Odoo Architect | DevOps Engineer</p>
+            <p class="mt-4">
+                <a href="mailto:jamshu.mkd@gmail.com" class="hover:underline">jamshu.mkd@gmail.com</a> |
+                <a href="https://www.linkedin.com/in/jamshid-k-72758aa2/" class="hover:underline">LinkedIn Profile</a>
+            </p>
+        </div>
+    </header>
 
-                           //handle payment completion
-                       }
-            function fillDetails(jsonData) {
-                
-                console.log('jsonData =' , jsonData);
-               var userData = JSON.parse(jsonData);
-               sessionStorage.setItem('sessionid',userData['sessionid']);
-               sessionStorage.setItem('currency',userData['currency']);
-               sessionStorage.setItem('orderid',userData['orderid']);
-               sessionStorage.setItem('total',userData['total']);
+    <!-- Professional Summary -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-semibold mb-4 text-center">Professional Summary</h2>
+            <p class="text-center max-w-3xl mx-auto text-lg">
+                I am an innovative system architect and DevOps engineer with over 11 years of experience, specializing in designing, implementing, and optimizing scalable solutions for business transformation and technology integration.
+            </p>
+        </div>
+    </section>
 
-            }
-
-
-            Checkout.configure({
-                merchant:'DB96719',
-                order: {
-                    amount: function () {
-                        return 5;
-                    },
-                    currency: 'QAR',
-                    description: '',
-                    id: 'SESSION0002579865635G5929783I50'
-                },
-                session: {
-                    id: 'SESSION0002579865635G5929783I50'
-                },
-                interaction: {
-                    operation:'VERIFY',
-                    merchant      : {
-                        name   : 'Samia Al Saleh for trading',
-                        address: {
-                            line1: 'Umm Salal Muhammad',
-                        },
-                        email  : 'alkhidmasystems@gmail.com',
-                        phone  : '+97444210089',
-                    },
-                    locale        : 'en_US',
-                    theme         : 'default',
-                    displayControl: {
-                        billingAddress  : 'HIDE',
-                        customerEmail   : 'HIDE',
-                        orderSummary    : 'SHOW',
-                        shipping        : 'HIDE'
-                    }
-                }
-            });
-        </script>
-    </head>
-    <body>
-        <!-- <input type="button" value="Pay with Lightbox" onclick="Checkout.showLightbox();" />
-        <input type="button" value="Pay with Payment Page" onclick="Checkout.showPaymentPage();" /> -->
-
-        <div class="body-container">
-            
-            <header>
-                <img src="assets/logo2.png" alt="" class="logo">
-            </header>
-    
-            <div class="header mr-1 w-fill">Pay&nbsp;with</div>
-            <div class="row w-fill">
-                <div class="icon tick mr-1"></div>
-                <div class="sub-header mr-1">Cash on Delivery</div>
-            </div>
-            <hr class="mr-v-3 w-fill">
-            <div class="header w-fill">Payment&nbsp;Summary</div>
-            <div class="row j-between pd-1 w-fill">
-                <div class="sub-header">Cart&nbsp;Total</div>
-                <div class="sub-header"><span class="weight">QAR&nbsp;<span>30670.03</span></span></div>
-            </div>
-            <div class="row j-between pd-1 w-fill">
-                <div class="sub-header">Delivery&nbsp;Charges</div>
-                <div class="sub-header"><span class="weight">QAR&nbsp;<span>30</span></span></div>
-            </div>
-            <hr class="w-fill">
-            <div class="row j-between pd-1 w-fill">
-                <div class="sub-header">Grand&nbsp;Total</div>
-                <div class="sub-header"><span class="weight">QAR&nbsp;<span>30</span></span></div>
-            </div>
-
-            <div class="col f-fill w-fill mr-v-3">
-                <div class="sub-header black mr-1"><span class="weight">Disclaimer</span></div>
-                <div class="sub-header mr-1 text">
-                    There will be a charge for home deliveries.<br/>
-                    Delivery charges :<br/>
-                    &nbsp;&nbsp;Doha starts QR 30<br/>
-                    &nbsp;&nbsp;Outside Doha starts QR 50<br/>
+    <!-- Skills Section -->
+    <section class="py-12 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-semibold mb-6 text-center">Skills</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white shadow-md p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-2">Core Expertise</h3>
+                    <p>Odoo Development, System Architecture, Business Solutions</p>
+                </div>
+                <div class="bg-white shadow-md p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-2">DevOps</h3>
+                    <p>Git, GitLab CI/CD, Kubernetes, Docker, PostgreSQL, CloudNative PG</p>
+                </div>
+                <div class="bg-white shadow-md p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-2">Cloud Platforms</h3>
+                    <p>GKE, AWS, Azure</p>
+                </div>
+                <div class="bg-white shadow-md p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-2">Programming Languages</h3>
+                    <p>Python, Bash</p>
+                </div>
+                <div class="bg-white shadow-md p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-2">Tools and Technologies</h3>
+                    <p>Helm, Rancher, VirtualBox, RKE</p>
                 </div>
             </div>
-
-            <input type="button" value="Pay Now" onclick="Checkout.showPaymentPage();" />
-          
         </div>
-        
-        
-    </body>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-semibold mb-6 text-center">Work Experience</h2>
+            <div class="space-y-6">
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                    <h3 class="text-2xl font-bold mb-2">System Architect - ULTS</h3>
+                    <p>06/2023 - Present</p>
+                    <ul class="list-disc list-inside text-gray-700 mt-2">
+                        <li>Spearheaded the design and implementation of scalable architecture solutions, enhancing system reliability.</li>
+                        <li>Mentored a team of 25+ developers, leading to improvements in project delivery time.</li>
+                        <li>Integrated advanced technologies, reducing operational costs significantly.</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                    <h3 class="text-2xl font-bold mb-2">Team Lead - Zeeve Deep Tech</h3>
+                    <p>12/2021 - 05/2023</p>
+                    <ul class="list-disc list-inside text-gray-700 mt-2">
+                        <li>Led a cross-functional team in the development of blockchain-based applications.</li>
+                        <li>Optimized system performance, reducing downtime and enhancing efficiency.</li>
+                        <li>Collaborated with stakeholders to align project goals with business objectives.</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                    <h3 class="text-2xl font-bold mb-2">Team Lead - AL Khidma Systems</h3>
+                    <p>11/2020 - 12/2021</p>
+                    <ul class="list-disc list-inside text-gray-700 mt-2">
+                        <li>Managed the development of custom Odoo modules, improving client satisfaction.</li>
+                        <li>Streamlined development processes, boosting team productivity.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-12 bg-gray-800 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-semibold mb-6">Get In Touch</h2>
+            <p>If you want to discuss a project or just say hello, feel free to reach out!</p>
+            <p class="mt-4">
+                <a href="mailto:jamshu.mkd@gmail.com" class="underline">jamshu.mkd@gmail.com</a>
+            </p>
+        </div>
+    </section>
+</body>
 </html>
