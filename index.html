@@ -10,17 +10,30 @@
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
         body { font-family: 'Roboto', sans-serif; }
     </style>
+    <script>
+        function toggleDetails(id) {
+            const content = document.getElementById(id);
+            const button = document.getElementById(id + '-btn');
+            if (content.style.display === 'none' || content.style.display === '') {
+                content.style.display = 'block';
+                button.innerHTML = 'Show Less';
+            } else {
+                content.style.display = 'none';
+                button.innerHTML = 'Read More';
+            }
+        }
+    </script>
 </head>
 <body class="bg-gray-50 text-gray-800">
     <!-- Header Section -->
-    <header class="bg-primary-600  py-6">
+    <header class="bg-primary-600 py-6">
         <div class="container mx-auto text-center">
             <img src="assets/profile.jpg" alt="Jamshid K" class="rounded-full w-32 h-32 mx-auto mb-4">
             <h1 class="text-5xl font-bold tracking-wide">Jamshid K</h1>
             <p class="text-2xl mt-2 text-gray-500">Odoo Architect | DevOps Engineer</p>
             <p class="mt-4">
                 <a href="mailto:jamshu.mkd@gmail.com" class="hover:underline">jamshu.mkd@gmail.com</a> |
-                <a href="https://www.linkedin.com/in/jamshid-k-72758aa2/" class="hover:underline">LinkedIn Profile</a>|
+                <a href="https://www.linkedin.com/in/jamshid-k-72758aa2/" class="hover:underline">LinkedIn Profile</a> |
                 <a href="https://github.com/jamshu/" class="hover:underline">Github</a>
             </p>
         </div>
@@ -70,6 +83,7 @@
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-semibold mb-6 text-center">Work Experience</h2>
             <div class="space-y-6">
+                <!-- Job 1 -->
                 <div class="bg-gray-50 p-6 rounded-lg shadow-md">
                     <h3 class="text-2xl font-bold mb-2">System Architect - ULTS</h3>
                     <p>06/2023 - Present</p>
@@ -78,7 +92,13 @@
                         <li>Mentored a team of 25+ developers, leading to improvements in project delivery time.</li>
                         <li>Integrated advanced technologies, reducing operational costs significantly.</li>
                     </ul>
+                    <button id="details1-btn" onclick="toggleDetails('details1')" class="mt-4 text-blue-600 hover:underline">Read More</button>
+                    <div id="details1" class="mt-2 text-gray-700" style="display: none;">
+                        <p>Successfully migrated the infrastructure to a cloud-native platform, reducing downtime by 40%. Collaborated with stakeholders to align technical architecture with business goals, ensuring smooth product delivery.</p>
+                    </div>
                 </div>
+
+                <!-- Job 2 -->
                 <div class="bg-gray-50 p-6 rounded-lg shadow-md">
                     <h3 class="text-2xl font-bold mb-2">Team Lead - Zeeve Deep Tech</h3>
                     <p>12/2021 - 05/2023</p>
@@ -87,7 +107,13 @@
                         <li>Optimized system performance, reducing downtime and enhancing efficiency.</li>
                         <li>Collaborated with stakeholders to align project goals with business objectives.</li>
                     </ul>
+                    <button id="details2-btn" onclick="toggleDetails('details2')" class="mt-4 text-blue-600 hover:underline">Read More</button>
+                    <div id="details2" class="mt-2 text-gray-700" style="display: none;">
+                        <p>Worked closely with the R&D team to introduce blockchain solutions into the company's product suite. The developed platform scaled to support over 1 million daily transactions.</p>
+                    </div>
                 </div>
+
+                <!-- Job 3 -->
                 <div class="bg-gray-50 p-6 rounded-lg shadow-md">
                     <h3 class="text-2xl font-bold mb-2">Team Lead - AL Khidma Systems</h3>
                     <p>11/2020 - 12/2021</p>
@@ -95,7 +121,13 @@
                         <li>Managed the development of custom Odoo modules, improving client satisfaction.</li>
                         <li>Streamlined development processes, boosting team productivity.</li>
                     </ul>
+                    <button id="details3-btn" onclick="toggleDetails('details3')" class="mt-4 text-blue-600 hover:underline">Read More</button>
+                    <div id="details3" class="mt-2 text-gray-700" style="display: none;">
+                        <p>Led the integration of Odoo with third-party services, significantly enhancing functionality for multiple clients. Delivered custom solutions for complex business requirements.</p>
+                    </div>
                 </div>
+
+                <!-- Job 4 -->
                 <div class="bg-gray-50 p-6 rounded-lg shadow-md">
                     <h3 class="text-2xl font-bold mb-2">Senior Developer - Beta Information Technology</h3>
                     <p>12/2017 - 03/2020</p>
@@ -103,38 +135,32 @@
                         <li>Developed and deployed enterprise-grade applications, improving system efficiency.</li>
                         <li>Migrated legacy systems to modern platforms, enhancing scalability.</li>
                     </ul>
+                    <button id="details4-btn" onclick="toggleDetails('details4')" class="mt-4 text-blue-600 hover:underline">Read More</button>
+                    <div id="details4" class="mt-2 text-gray-700" style="display: none;">
+                        <p>Played a key role in the modernization of enterprise systems, increasing efficiency and productivity. Worked on automating routine tasks and reducing manual intervention.</p>
+                    </div>
                 </div>
+
+                <!-- Job 5 -->
                 <div class="bg-gray-50 p-6 rounded-lg shadow-md">
                     <h3 class="text-2xl font-bold mb-2">Senior Developer - Orchid Infosys</h3>
-                    <p>03/2015 - 11/2017</p>
+                    <p>12/2014 - 12/2017</p>
                     <ul class="list-disc list-inside text-gray-700 mt-2">
-                        <li>Led the development of secure software solutions for various clients.</li>
-                        <li>Implemented best practices in software engineering, reducing code defects.</li>
+                        <li>Designed and developed custom ERP solutions tailored to client needs.</li>
+                        <li>Collaborated with cross-functional teams to deliver seamless software integration.</li>
                     </ul>
-                </div>
-                <div class="bg-gray-50 p-6 rounded-lg shadow-md">
-                    <h3 class="text-2xl font-bold mb-2">Python Odoo Developer - Novizco Infotech</h3>
-                    <p>07/2013 - 12/2014</p>
-                    <ul class="list-disc list-inside text-gray-700 mt-2">
-                        <li>Developed Odoo-based applications, improving data processing speed.</li>
-                        <li>Collaborated with cross-functional teams to deliver projects on time and within budget.</li>
-                    </ul>
+                    <button id="details5-btn" onclick="toggleDetails('details5')" class="mt-4 text-blue-600 hover:underline">Read More</button>
+                    <div id="details5" class="mt-2 text-gray-700" style="display: none;">
+                        <p>Worked on delivering high-quality ERP solutions that aligned with business needs, providing better control over operations and improving overall performance.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="py-12 bg-gray-800 text-white">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl font-semibold mb-6">Get In Touch</h2>
-            <p>If you want to discuss a project or just say hello, feel free to reach out!</p>
-            <p class="mt-4">
-                <a href="mailto:jamshu.mkd@gmail.com" class="underline">jamshu.mkd@gmail.com</a>
-
-            </p>
-            <div>Call me : +91 6282621330</div>
-        </div>
-    </section>
+    <!-- Footer -->
+    <footer class="py-6 bg-primary-600 text-white text-center">
+        <p>&copy; 2024 Jamshid K. All rights reserved.</p>
+    </footer>
 </body>
 </html>
