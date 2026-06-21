@@ -1,4 +1,4 @@
-]<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -69,20 +69,110 @@
     background-image:
       radial-gradient(circle at 15% 20%, rgba(201,150,122,0.12), transparent 40%),
       radial-gradient(circle at 85% 80%, rgba(122,59,78,0.10), transparent 40%);
+    border: 1px solid var(--blush);
+    overflow: hidden;
+  }
+
+  /* ── Pages (each is a full layer inside the card) ──────── */
+  .pages {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  .page-slide {
+    position: absolute;
+    inset: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     text-align: center;
-    padding: 40px 26px;
-    border: 1px solid var(--blush);
-    overflow-y: auto;
+    padding: 40px 30px;
+    opacity: 0;
+    transform: translateY(16px) scale(0.985);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+    pointer-events: none;
   }
-  .inside::after {
-    content: '';
+  .page-slide.active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+  .page-slide.leaving {
+    opacity: 0;
+    transform: translateY(-12px) scale(0.985);
+  }
+
+  .quote-mark {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--rosegold);
+    font-style: italic;
+    margin-bottom: 8px;
     flex-shrink: 0;
-    height: 8px;
   }
+  .message {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(1.1rem, 4vw, 1.4rem);
+    line-height: 1.75;
+    color: var(--ink);
+  }
+  .signoff {
+    margin-top: 24px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--wine);
+    flex-shrink: 0;
+  }
+  .heart-row {
+    margin-top: 16px;
+    color: var(--rosegold);
+    font-size: 0.95rem;
+    letter-spacing: 6px;
+    flex-shrink: 0;
+  }
+
+  /* Page progress dots */
+  .dots {
+    position: absolute;
+    left: 0; right: 0;
+    bottom: 16px;
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    z-index: 3;
+  }
+  .dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--blush);
+    transition: background 0.4s, transform 0.4s;
+  }
+  .dot.active {
+    background: var(--rosegold);
+    transform: scale(1.4);
+  }
+
+  .next-tip {
+    position: absolute;
+    left: 0; right: 0;
+    bottom: 30px;
+    text-align: center;
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--rosegold);
+    opacity: 0.55;
+    z-index: 3;
+    transition: opacity 0.4s;
+  }
+  .card.last-page .next-tip { opacity: 0; }
 
   /* Cover (front flap, hinges open like a real card) */
   .cover {
@@ -146,55 +236,6 @@
     color: rgba(239, 217, 211, 0.55);
   }
 
-  /* ── Inside content ─────────────────────────── */
-  .quote-mark {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2rem;
-    color: var(--rosegold);
-    font-style: italic;
-    margin-bottom: 4px;
-    opacity: 0;
-    flex-shrink: 0;
-  }
-  .message {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-weight: 500;
-    font-size: clamp(1.05rem, 3.6vw, 1.32rem);
-    line-height: 1.7;
-    color: var(--ink);
-    opacity: 0;
-  }
-  .signoff {
-    margin-top: 22px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    font-size: 0.78rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--wine);
-    opacity: 0;
-    flex-shrink: 0;
-  }
-  .heart-row {
-    margin-top: 16px;
-    color: var(--rosegold);
-    font-size: 0.95rem;
-    letter-spacing: 6px;
-    opacity: 0;
-    flex-shrink: 0;
-  }
-
-  .card.open .quote-mark   { animation: rise 1s ease 1.5s forwards; }
-  .card.open .message      { animation: rise 1.5s ease 2s forwards; }
-  .card.open .signoff      { animation: rise 1.5s ease 2.5s forwards; }
-  .card.open .heart-row    { animation: rise 1.5s ease 2.5s forwards; }
-
-  @keyframes rise {
-    from { opacity: 0; transform: translateY(14px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
   .replay {
     display: block;
     margin: 22px auto 0;
@@ -219,23 +260,55 @@
   <p class="hint">Tap the card to open it</p>
   <div class="card" id="card">
     <div class="inside">
-      <p class="quote-mark">"</p>
-      <p class="message">
-        Sithu, my love —<br><br>
-        the distance between Saudi and India<br>
-        is just geography. it has no power over<br>
-        what I feel for you.<br><br>
-        I close my eyes and you're right here —<br>
-        your laugh, your warmth, the way you say my name.<br><br>
-        Every night I fall asleep loving you a little more<br>
-        than the night before, somehow.<br><br>
-        You are my favorite hello, my hardest goodbye,<br>
-        and the love I am always coming home to.<br><br>
-        Until I can hold you again —<br>
-        forever yours, completely.
-      </p>
-      <p class="signoff">Forever yours · Jamshutti</p>
-      <p class="heart-row">♡ ♡ ♡</p>
+      <div class="pages" id="pages">
+
+        <div class="page-slide" data-page="0">
+          <p class="quote-mark">"</p>
+          <p class="message">
+            Sithu, my love —<br><br>
+            the distance between Saudi and India<br>
+            is just geography.
+          </p>
+        </div>
+
+        <div class="page-slide" data-page="1">
+          <p class="message">
+            it has no power over<br>
+            what I feel for you.<br><br>
+            I close my eyes and you're right here —
+          </p>
+        </div>
+
+        <div class="page-slide" data-page="2">
+          <p class="message">
+            your laugh, your warmth,<br>
+            the way you say my name.<br><br>
+            Every night I fall asleep loving you<br>
+            a little more than the night before, somehow.
+          </p>
+        </div>
+
+        <div class="page-slide" data-page="3">
+          <p class="message">
+            You are my favorite hello,<br>
+            my hardest goodbye,<br>
+            and the love I am always coming home to.
+          </p>
+        </div>
+
+        <div class="page-slide" data-page="4">
+          <p class="message">
+            Until I can hold you again —<br>
+            forever yours, completely.
+          </p>
+          <p class="signoff">Forever yours · Jamshutti</p>
+          <p class="heart-row">♡ ♡ ♡</p>
+        </div>
+
+      </div>
+
+      <div class="dots" id="dots"></div>
+      <p class="next-tip" id="nextTip">tap for more</p>
     </div>
     <div class="cover">
       <div class="cover-content">
@@ -253,44 +326,51 @@
   const card = document.getElementById('card');
   const replay = document.getElementById('replay');
   const hint = document.querySelector('.hint');
+  const dotsContainer = document.getElementById('dots');
+  const slides = Array.from(document.querySelectorAll('.page-slide'));
+  let currentPage = -1; // -1 = card still closed
 
-  // Custom slow, eased scroll — gentler than the native "smooth" behavior
-  function slowScrollTo(el, target, duration) {
-    const start = el.scrollTop;
-    const distance = target - start;
-    const startTime = performance.now();
+  // Build progress dots
+  slides.forEach(() => {
+    const d = document.createElement('div');
+    d.className = 'dot';
+    dotsContainer.appendChild(d);
+  });
+  const dots = Array.from(dotsContainer.children);
 
-    function easeInOutSine(t) {
-      return -(Math.cos(Math.PI * t) - 1) / 2;
-    }
-
-    function step(now) {
-      const elapsed = now - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      el.scrollTop = start + distance * easeInOutSine(progress);
-      if (progress < 1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
+  function showPage(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.remove('active', 'leaving');
+      if (i === currentPage && currentPage !== -1) slide.classList.add('leaving');
+      if (i === index) slide.classList.add('active');
+    });
+    dots.forEach((d, i) => d.classList.toggle('active', i === index));
+    card.classList.toggle('last-page', index === slides.length - 1);
+    currentPage = index;
   }
 
   card.addEventListener('click', () => {
     if (!card.classList.contains('open')) {
+      // First tap: open the cover
       card.classList.add('open');
       hint.style.opacity = '0';
+      setTimeout(() => showPage(0), 1300);
+      return;
+    }
 
-      const insideEl = card.querySelector('.inside');
-      // wait for the flip + text reveal, then gently auto-scroll the message, slowly
-      setTimeout(() => {
-        slowScrollTo(insideEl, insideEl.scrollHeight, 9000);
-      }, 1900);
+    // Subsequent taps: advance through pages
+    if (currentPage < slides.length - 1) {
+      showPage(currentPage + 1);
     }
   });
 
   replay.addEventListener('click', (e) => {
     e.stopPropagation();
-    card.classList.remove('open');
+    card.classList.remove('open', 'last-page');
     hint.style.opacity = '0.75';
-    card.querySelector('.inside').scrollTo({ top: 0 });
+    slides.forEach(s => s.classList.remove('active', 'leaving'));
+    dots.forEach(d => d.classList.remove('active'));
+    currentPage = -1;
   });
 </script>
 </body>
